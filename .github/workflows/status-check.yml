@@ -1,0 +1,16 @@
+name: Simple Status Check
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run status check script
+        run: |
+          echo "Running status check..."
+          # Your script logic goes here
+          exit 0
