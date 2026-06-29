@@ -5,10 +5,11 @@
   },
   "metadata": {
     "description": "This is a test of merging repositories.",
-    "totalPlugins": 2
+    "totalPlugins": 3
   },
   "plugins": [
 	"A",
-	"B"
+	"B",
+	"C2"
   ]
 }
