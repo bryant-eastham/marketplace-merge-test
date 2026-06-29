@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(cd "$HOOK_DIR/.." && pwd)"
+
+cd "$REPO_DIR"
+
+python3 .githooks/generate-marketplace.py
+
+git add -f .claude-plugin/marketplace.json

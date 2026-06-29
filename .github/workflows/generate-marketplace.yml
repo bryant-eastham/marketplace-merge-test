@@ -1,0 +1,34 @@
+name: Generate marketplace.json
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.claude-plugin/marketplace.json'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate marketplace.json
+        run: python3 .githooks/generate-marketplace.py
+
+      - name: Commit and push
+        run: |
+          git add -f .claude-plugin/marketplace.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git commit -m "Auto-generate marketplace.json"
+          git push
