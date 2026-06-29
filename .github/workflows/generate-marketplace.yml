@@ -1,11 +1,10 @@
 name: Generate marketplace.json
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.claude-plugin/marketplace.json'
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'plugin/**'
 
 permissions:
   contents: write
@@ -16,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Generate marketplace.json
