@@ -8,10 +8,6 @@ on:
       - 'plugin/**'
       - '.claude-plugin/marketplace-base.json'
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   regenerate:
     runs-on: ubuntu-latest
@@ -24,23 +20,15 @@ jobs:
       - name: Generate marketplace.json
         run: python3 scripts/generate-marketplace.py
 
-      - name: Create PR for regeneration
+      - name: Commit and push to main
         run: |
           git add -f .claude-plugin/marketplace.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          BRANCH="auto/regenerate-marketplace-$(date +%s)"
-          git checkout -b "$BRANCH"
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git commit -m "Regenerate marketplace.json"
-          git push origin "$BRANCH"
-          gh pr create \
-            --base main \
-            --head "$BRANCH" \
-            --title "Regenerate marketplace.json" \
-            --body "Auto-generated after plugin changes."
-        env:
-          GH_TOKEN: ${{ github.token }}
+          git remote set-url origin https://x-access-token:${{ secrets.GH_BYPASS_PAT }}@github.com/${{ github.repository }}
+          git push
