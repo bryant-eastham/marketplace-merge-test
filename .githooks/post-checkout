@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-register the merge driver if missing (e.g. after .git/config reset)
+if ! git config --global merge.marketplace-merge.driver &>/dev/null; then
+  git config --global merge.marketplace-merge.driver ".githooks/merge-marketplace.py %O %A %B"
+fi
