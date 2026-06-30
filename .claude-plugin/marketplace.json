@@ -5,9 +5,18 @@
   },
   "metadata": {
     "description": "This is a test of merging repositories.",
-    "totalPlugins": 5
+    "totalPlugins": 6
   },
   "plugins": [
+    {
+      "name": "A",
+      "description": "Plugin A - an alphabetical first",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": true
+    },
     {
       "name": "C2",
       "description": "Plugin C2",
