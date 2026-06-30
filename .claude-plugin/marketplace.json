@@ -15,7 +15,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": true
+      "verified": true,
+      "source": "./plugin/A"
     },
     {
       "name": "C",
@@ -24,7 +25,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": true
+      "verified": true,
+      "source": "./plugin/C"
     },
     {
       "name": "E",
@@ -33,7 +35,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": true
+      "verified": true,
+      "source": "./plugin/E"
     },
     {
       "name": "F",
@@ -42,7 +45,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": false
+      "verified": false,
+      "source": "./plugin/F"
     },
     {
       "name": "G",
@@ -51,7 +55,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": false
+      "verified": false,
+      "source": "./plugin/G"
     },
     {
       "name": "H",
@@ -60,7 +65,8 @@
       "author": {
         "name": "NiCE"
       },
-      "verified": true
+      "verified": true,
+      "source": "./plugin/H"
     }
   ]
 }
