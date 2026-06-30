@@ -18,13 +18,13 @@
       "verified": true
     },
     {
-      "name": "C2",
-      "description": "Plugin C2",
-      "version": "1.0.0",
+      "name": "C",
+      "description": "Plugin C (renamed from C2)",
+      "version": "1.1.0",
       "author": {
         "name": "NiCE"
       },
-      "verified": false
+      "verified": true
     },
     {
       "name": "E",
