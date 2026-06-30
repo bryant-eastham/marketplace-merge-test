@@ -1,0 +1,25 @@
+name: PR check - marketplace.json
+
+on:
+  pull_request:
+    paths:
+      - '.claude-plugin/marketplace.json'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify marketplace.json was not manually modified
+        run: |
+          if git diff origin/${{ github.base_ref }} -- .claude-plugin/marketplace.json | grep -q .; then
+            echo "::error:: marketplace.json must not be modified in PRs."
+            echo "::error:: Run ./setup.sh locally, then restore marketplace.json:"
+            echo "::error::   git restore --staged .claude-plugin/marketplace.json"
+            echo "::error::   git restore .claude-plugin/marketplace.json"
+            echo "::error::   git update-index --skip-worktree .claude-plugin/marketplace.json"
+            exit 1
+          fi
