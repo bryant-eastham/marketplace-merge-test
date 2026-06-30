@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -u
+
+if git diff --cached --name-only | grep -qF '.claude-plugin/marketplace.json'; then
+  cat >&2 <<'EOF'
+ERROR: .claude-plugin/marketplace.json is staged for commit.
+
+This file is auto-generated. It MUST NOT be committed manually.
+
+To fix this PR:
+
+  1. Run setup.sh (one-time):
+       ./setup.sh
+
+  2. Unstage marketplace.json:
+       git restore --staged .claude-plugin/marketplace.json
+
+  3. If it still shows as modified, regenerate the correct version:
+       python3 scripts/generate-marketplace.py
+       git update-index --skip-worktree .claude-plugin/marketplace.json
+
+  4. Commit your plugin changes (without marketplace.json):
+       git commit -m "..."
+
+EOF
+  exit 1
+fi

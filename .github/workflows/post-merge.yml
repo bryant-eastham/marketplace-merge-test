@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Generate marketplace.json
         run: python3 scripts/generate-marketplace.py
@@ -32,4 +32,5 @@ jobs:
           git commit -m "Regenerate marketplace.json"
           git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://x-access-token:${{ secrets.GH_BYPASS_PAT }}@github.com/${{ github.repository }}
+          git pull --rebase origin main
           git push
