@@ -7,6 +7,9 @@ def load(path):
     with open(path) as f:
         return json.load(f)
 
+def plugin_name(p):
+    return p.get("name", "") if isinstance(p, dict) else str(p)
+
 ancestor = load(ancestor_file)
 ours = load(our_file)
 theirs = load(their_file)
@@ -15,15 +18,22 @@ anc_plugins = ancestor.get("plugins", [])
 our_plugins = ours.get("plugins", [])
 their_plugins = theirs.get("plugins", [])
 
-our_additions = [p for p in our_plugins if p not in anc_plugins]
-their_additions = [p for p in their_plugins if p not in anc_plugins]
+anc_names = {plugin_name(p) for p in anc_plugins}
+our_names = {plugin_name(p) for p in our_plugins}
+their_names = {plugin_name(p) for p in their_plugins}
 
-seen = set()
-merged_plugins = []
-for p in anc_plugins + our_additions + their_additions:
-    if p not in seen:
-        seen.add(p)
-        merged_plugins.append(p)
+by_name = {}
+for p in anc_plugins:
+    by_name[plugin_name(p)] = p
+for p in our_plugins:
+    by_name[plugin_name(p)] = p
+for p in their_plugins:
+    by_name[plugin_name(p)] = p
+
+# Union of all names
+all_names = sorted(anc_names | our_names | their_names)
+
+merged_plugins = [by_name[n] for n in all_names]
 
 merged = ancestor
 merged["plugins"] = merged_plugins

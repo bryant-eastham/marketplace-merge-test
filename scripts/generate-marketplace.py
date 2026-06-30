@@ -12,14 +12,21 @@ if not os.path.exists(base_path):
 with open(base_path) as f:
     base = json.load(f)
 
-plugin_files = sorted(os.listdir(plugin_dir)) if os.path.isdir(plugin_dir) else []
-plugin_files = [p for p in plugin_files if os.path.isfile(os.path.join(plugin_dir, p))]
+plugins = []
+if os.path.isdir(plugin_dir):
+    for entry in sorted(os.listdir(plugin_dir)):
+        plugin_json = os.path.join(plugin_dir, entry, ".claude-plugin", "plugin.json")
+        if os.path.isfile(plugin_json):
+            with open(plugin_json) as f:
+                plugins.append(json.load(f))
 
-base["metadata"]["totalPlugins"] = len(plugin_files)
-base["plugins"] = plugin_files
+plugins.sort(key=lambda p: p.get("name", ""))
+
+base["metadata"]["totalPlugins"] = len(plugins)
+base["plugins"] = plugins
 
 with open(output_path, "w") as f:
     json.dump(base, f, indent=2)
     f.write("\n")
 
-print(f"Generated {output_path} with {len(plugin_files)} plugin(s)")
+print(f"Generated {output_path} with {len(plugins)} plugin(s)")

@@ -8,10 +8,50 @@
     "totalPlugins": 5
   },
   "plugins": [
-    "C2",
-    "D",
-    "E",
-    "F",
-    "G"
+    {
+      "name": "C2",
+      "description": "Plugin C2",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": false
+    },
+    {
+      "name": "D",
+      "description": "Plugin D",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": false
+    },
+    {
+      "name": "E",
+      "description": "Plugin E",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": false
+    },
+    {
+      "name": "F",
+      "description": "Plugin F",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": false
+    },
+    {
+      "name": "G",
+      "description": "Plugin G",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": false
+    }
   ]
 }
