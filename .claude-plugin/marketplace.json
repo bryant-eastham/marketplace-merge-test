@@ -1,0 +1,15 @@
+{
+  "name": "test-platform",
+  "owner": {
+    "name": "NiCE"
+  },
+  "metadata": {
+    "description": "This is a test of merging repositories.",
+    "totalPlugins": 3
+  },
+  "plugins": [
+    "A",
+    "B",
+    "C2"
+  ]
+}
