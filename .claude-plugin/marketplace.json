@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "This is a test of merging repositories.",
-    "totalPlugins": 6
+    "totalPlugins": 7
   },
   "plugins": [
     {
@@ -61,6 +61,15 @@
         "name": "NiCE"
       },
       "verified": false
+    },
+    {
+      "name": "H",
+      "description": "Plugin H - an alphabetical last",
+      "version": "1.0.0",
+      "author": {
+        "name": "NiCE"
+      },
+      "verified": true
     }
   ]
 }
